@@ -1,0 +1,5 @@
+Upper HSV:  (179, 66, 255)
+Lower HSV:  (4, 0, 153)
+
+Erode : 99
+Dilate : 1
