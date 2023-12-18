@@ -36,6 +36,9 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
             Dilate is often used to accentuate or emphasize features in an image.
     """
     mask = cv2.dilate(mask, None, iterations=dilate)
+    cv2.imwrite(
+                r'/home/ca2023/Desktop/mask.png',
+                mask)
     # finding contours of the processed frame
     cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     # using imutils to make sure we have pure contours and nothing else with it.
@@ -64,7 +67,7 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
             cv2.circle(frame, center, 5, (0, 0, 255), -1)
             print(center)
             cv2.imwrite(
-                r'E:\University of Kerman\Term 5\Computer Architecture\Project\Robot_Project\Image_Processing\contour.png',
+                r'/home/ca2023/Desktop/ball.png',
                 frame)
             return output, False
 
@@ -73,13 +76,13 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
     return output, True
 
 if __name__ == "__main__":
-    vs = imutils.video.VideoStream(src=0).start()
+    vs = imutils.video.VideoStream(src=1).start()
     time.sleep(2.0)
-
-    uhsv = (179, 245, 207)
-    lhsv = (107, 146, 0)
-    erode = 19
-    dilate = 99
+    
+    uhsv = (8, 255, 202)
+    lhsv = (0, 212, 89)
+    erode = 0
+    dilate = 15
     notfound = True
     while notfound:
         time.sleep(0.7)
