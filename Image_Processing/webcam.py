@@ -11,5 +11,5 @@ ret, image = cam.read()
 # 		break
 cv2.imwrite(r'/home/ca2023/Desktop/appleball.jpg', image)
 cam.release()
-print("im here")
+print("picture saved")
 # cv2.destroyAllWindows()
