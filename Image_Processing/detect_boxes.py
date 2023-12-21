@@ -4,7 +4,19 @@ from imutils.video import VideoStream
 import time
 
 
-def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
+def drawrect(rect, frame, centers):
+    center = tuple(map(int, rect[0]))
+    size = tuple(map(int, rect[1]))
+
+    sp = (int(center[0] - size[0] / 2), int(center[1] - size[1] / 2))
+    ep = (int(center[0] + size[0] / 2), int(center[1] + size[1] / 2))
+
+    cv2.rectangle(frame, sp, ep, (255, 0, 0), 2)
+    cv2.circle(frame, center, 5, (0, 0, 255), -1)
+
+    return center
+
+def detect_box(frame, upper_hsv, lower_hsv, erode, dilate, num_box=1):
     """
     This method finds the center of the ball and detects the ball using color thresholding in HSV.
     :param frame: A (width, height, 3) array, representing our RGB image.
@@ -38,7 +50,7 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
     """
     mask = cv2.dilate(mask, None, iterations=dilate)
     cv2.imwrite(
-        r'/Image_Processing/test/mask.png',
+        r'E:\University of Kerman\Term 5\Computer Architecture\Project\Robot_Project\Image_Processing\test\mask.png',
         mask)
     # finding contours of the processed frame
     cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -48,30 +60,21 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
     # we will find the center of the ball and return it as output, else we return None as output
     if len(cnts) > 0:
         # c is a contour that hase the biggest area among all contours that we found in the frame.
-        c = max(cnts, key=cv2.contourArea)
+        # c1 = max(cnts, key=cv2.contourArea)
+        sorted_cnts = sorted(cnts, key=cv2.contourArea)
 
         # finding the smallest enclosing circle
-        rect = cv2.minAreaRect(c)
-        center = rect[0]
-        size = rect[1]
-
-        center = tuple(map(int, center))
-
-        print(center)
-        print(size)
-
-        # draw the rect and its center of the frame
-        sp = (int(center[0] - size[0] / 2), int(center[1] - size[1] / 2))
-        ep = (int(center[0] + size[0] / 2), int(center[1] + size[1] / 2))
-
-        cv2.rectangle(frame, sp, ep, (255, 0, 0), 2)
-        cv2.circle(frame, center, 5, (0, 0, 255), -1)
+        centers = []
+        for c in sorted_cnts:
+            rect = cv2.minAreaRect(c)
+            cent = drawrect(rect, frame, centers)
+            centers.append(cent)
 
         # Display the frame
         cv2.imshow('Captured img', frame)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
-        output = center
+        output = centers
 
         # cv2.imwrite(
         #         r'E:\University of Kerman\Term 5\Computer Architecture\Project\Robot_Project\Image_Processing\test',
@@ -91,9 +94,9 @@ if __name__ == "__main__":
     erode = 7
     dilate = 42
     notfound = True
-    while notfound:
+    while True:
         time.sleep(0.7)
         frame = vs.read()
         print("Search for ball")
-        output, notfound = detect_ball(frame, uhsv, lhsv, erode, dilate)
+        output, notfound = detect_box(frame, uhsv, lhsv, erode, dilate, 10)
     print("________________end of the program________________")
