@@ -4,6 +4,7 @@ from imutils.video import VideoStream
 import time
 
 
+
 def drawrect(rect, frame, centers):
     center = tuple(map(int, rect[0]))
     size = tuple(map(int, rect[1]))

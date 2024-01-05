@@ -1,15 +1,10 @@
 import cv2
+import imutils
+import time
 
-cam = cv2.VideoCapture(1)
-ret, image = cam.read()
 
-# while True:
-# 	ret, image = cam.read()
-# 	# cv2.imshow('Imagetest',image)
-# 	k = cv2.waitKey(1)
-# 	if k != -1:
-# 		break
-cv2.imwrite(r'/home/ca2023/Desktop/appleball.jpg', image)
-cam.release()
-print("picture saved")
-# cv2.destroyAllWindows()
+def get_frame(cam=cv2.VideoCapture(1)):
+    ret, frame = cam.read()
+    resized_frame = imutils.resize(frame, width=500)
+
+    return ret, resized_frame
