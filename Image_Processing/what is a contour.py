@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 """
-    this is a good example to illustrate what is a countours
+    this is a good example to illustrate what is a contours
 """
 
 # Create a binary image with two circular objects

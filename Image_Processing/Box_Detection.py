@@ -2,20 +2,11 @@ import cv2
 import imutils
 from imutils.video import VideoStream
 import time
+from Tools import drawrect
 
 
 
-def drawrect(rect, frame, centers):
-    center = tuple(map(int, rect[0]))
-    size = tuple(map(int, rect[1]))
 
-    sp = (int(center[0] - size[0] / 2), int(center[1] - size[1] / 2))
-    ep = (int(center[0] + size[0] / 2), int(center[1] + size[1] / 2))
-
-    cv2.rectangle(frame, sp, ep, (255, 0, 0), 2)
-    cv2.circle(frame, center, 5, (0, 0, 255), -1)
-
-    return center
 
 def detect_box(frame, upper_hsv, lower_hsv, erode, dilate, num_box=1):
     """
@@ -85,22 +76,6 @@ def detect_box(frame, upper_hsv, lower_hsv, erode, dilate, num_box=1):
 
         return output, False
 
-
     return output, True
 
 
-if __name__ == "__main__":
-    vs = imutils.video.VideoStream(src=1).start()
-    time.sleep(2.0)
-
-    uhsv = (13, 255, 187)
-    lhsv = (0, 182, 107)
-    erode = 7
-    dilate = 42
-    notfound = True
-    while True:
-        time.sleep(0.7)
-        frame = vs.read()
-        print("Search for ball")
-        output, notfound = detect_box(frame, uhsv, lhsv, erode, dilate, 10)
-    print("________________end of the program________________")
