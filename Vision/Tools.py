@@ -26,6 +26,8 @@ def get_frame(cam):
 
 
 
+
+
     return ret, resized_frame
 
 def drawrect(rect, frame, centers):
@@ -42,9 +44,9 @@ def drawrect(rect, frame, centers):
     return center
 
 
-cam = cv2.VideoCapture(1)
+cam = cv2.VideoCapture(0)
 while True:
-    ret, frame = get_frame(cam=cam) # shape of the frame : (hight, width, channel)
+    ret, frame = get_frame(cam=cam)  # shape of the frame : (hight, width, channel)
     cv2.imshow('stream', frame)
     # print(frame.shape)
     key = cv2.waitKey(1)
