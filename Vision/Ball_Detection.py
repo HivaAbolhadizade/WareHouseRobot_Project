@@ -69,24 +69,35 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
             cv2.imwrite(
                 r'/home/ca2023/Desktop/ball.png',
                 frame)
-            return output, False
+            return frame, output, False
 
         # cv2.imshow("Frame", frame)
 
-    return output, True
+    return None, output, True
+
 
 if __name__ == "__main__":
     vs = imutils.video.VideoStream(src=1).start()
     time.sleep(2.0)
     
-    uhsv = (8, 255, 202)
-    lhsv = (0, 212, 89)
+    uhsv = (93, 255, 199)
+    lhsv = (42, 121, 39)
     erode = 0
-    dilate = 15
+    dilate = 5
     notfound = True
     while notfound:
         time.sleep(0.7)
         frame = vs.read()
         print("Search for ball")
-        output, notfound = detect_ball(frame, uhsv, lhsv, erode, dilate)
+        img, output, notfound = detect_ball(frame, uhsv, lhsv, erode, dilate)
+        if notfound is False:
+            print(img.shape)
+            print(type(img))
+            cv2.imshow("contour", img)
+            key = cv2.waitKey(0)
+            if key == 'q':
+                break
+
+
+
     print("________________end of the program________________")
