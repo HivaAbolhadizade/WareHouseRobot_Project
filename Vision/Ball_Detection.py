@@ -75,6 +75,7 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
 
     return output, True
 
+
 if __name__ == "__main__":
     vs = imutils.video.VideoStream(src=1).start()
     time.sleep(2.0)

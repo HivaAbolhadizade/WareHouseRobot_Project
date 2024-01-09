@@ -13,7 +13,11 @@ def stream():
     ret, frame = camera.read()
 
     # Convert the image to JPEG format
-    _, img_encoded = cv2.imencode('.jpeg', frame)
+    success, img_encoded = cv2.imencode('.jpg', frame)
+    if not success:
+        return
+
+
 
     key = cv2.waitKey(0)
     if key == 'q':
