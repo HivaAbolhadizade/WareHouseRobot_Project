@@ -44,16 +44,16 @@ def drawrect(rect, frame, centers):
     return center
 
 
-cam = cv2.VideoCapture(0)
-while True:
-    ret, frame = get_frame(cam=cam)  # shape of the frame : (hight, width, channel)
-    cv2.imshow('stream', frame)
-    # print(frame.shape)
-    key = cv2.waitKey(1)
-    if key == ord('e'):
-        break
-
-
-
-cam.release()
-cv2.destroyAllWindows()
+# cam = cv2.VideoCapture(0)
+# while True:
+#     ret, frame = get_frame(cam=cam)  # shape of the frame : (hight, width, channel)
+#     cv2.imshow('stream', frame)
+#     # print(frame.shape)
+#     key = cv2.waitKey(1)
+#     if key == ord('e'):
+#         break
+# 
+#
+#
+# cam.release()
+# cv2.destroyAllWindows()
