@@ -138,7 +138,7 @@ def distance():
     print("Distance:", distance, "cm")
     return distance
     """
-
+    return 5
 
 if __name__ == "__main__":
     # Starting the camera
@@ -166,8 +166,14 @@ if __name__ == "__main__":
             frame, center, radius, frame_info = detect_ball(frame=frame, upper_hsv=uhsv, lower_hsv=lhsv, erode=erode,
                                                             dilate=dilate)
 
+            cv2.imshow("VideoStream", frame)
+
+            key = cv2.waitKey(1)
+            if key == 'e':
+                break
+
             # Checking if we have seen the ball
-            if center[0] is not None: isBallDetected = True
+            if center[0] != None: isBallDetected = True
 
             if isBallDetected is True:
                 x_ball = center[0]
@@ -176,10 +182,31 @@ if __name__ == "__main__":
                 turn_right()
                 continue
 
-            l_bound = frame_info['sp'][0]
-            r_bound = frame_info['ep'][0]
+            # l_bound = frame_info['sp'][0]
+            # r_bound = frame_info['ep'][0]
 
-            if
+            # this should be deleted, just for test%
+            l_bound = 260
+            r_bound = 340
+
+
+            if y_ball >= 408:
+                if l_bound <= x_ball <= r_bound: # should change this later%
+                    avg_dist = sum([distance() for i in range(3)]) // 3
+                    if avg_dist > 6:
+                        forward(power=0.1)
+
+                    print("___ CATCHING THE BALL ___")
+
+                    # Changing the state
+                    ball_state = False
+                    gate_state = True
+
+                    continue
+
+                else:
+                    backward(power=0.5)
+                    continue
 
             if l_bound <= x_ball <= r_bound:
                 forward()
@@ -192,12 +219,10 @@ if __name__ == "__main__":
             elif x_ball < l_bound:
                 turn_left()  # we can find a formula based on the distance to r bound for power$
                 continue
+        break
 
-        cv2.imshow("VideoStream", frame)
 
-        key = cv2.waitKey(1)
-        if key == 'e':
-            break
+
 
         # gateOutPut = detectGate(frame=frame)
         # if gateOutput is not None and isBallcatched:

@@ -14,7 +14,7 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
     :param dilate:
     :return: (frame, center, radius, frame_info)
     """
-    center = None  # this is a tuple which is the cordination of the center
+    center = None  # this is a tuple that is the coordination of the center
     radius = 0  # this is the radious of the ball found, it will get value later in the code.
 
     # resizing the frame so that it would be easier to handle the image and also lowers the computation.
@@ -67,7 +67,7 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
         # Check if the radius of the enclosing circle is within a specific range.
         # We check this so that if other objects had the same color intensity, they would not be detected as the target ball.
         if radius > 10 and radius < 170:
-            
+
             # Drawing the enclosing circle
             cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 255), 2)
 
@@ -89,7 +89,7 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
 
     cv2.rectangle(frame, sp, ep, color=(255, 0, 0), thickness=3)
 
-    return frame, center, radius, {"frame_center": center_cord, "sp": sp, "ep": ep}
+    return frame, center, radius, {"frame_center": center_cord, "sp": sp, "ep": ep, "shape": (width, height)}
 
 if __name__ == "__main__":
     vs = imutils.video.VideoStream(src=1).start()
@@ -108,7 +108,11 @@ if __name__ == "__main__":
     while True:
         frame = vs.read()
         img, center, radius, cam_info = detect_ball(frame, uhsv, lhsv, erode, dilate)
-        print(center)
+        # print(center[0])
+        # print(cam_info['frame_center'])
+        # print(cam_info['sp'])
+        # print(cam_info['ep'])
+
 
         cv2.imshow("VideoStream", img)
 
