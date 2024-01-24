@@ -75,8 +75,8 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
             # Drawing the center of the circle
             cv2.circle(frame, center, 5, (0, 0, 255), -1)
 
-            print(radius)
-            print(center)
+            # print(radius)
+            # print(center)
 
             # return frame, center, radius, True
 
@@ -98,30 +98,30 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
     return frame, center, radius, {"frame_center": center_cord, "sp": sp, "ep": ep}
 
 
-if __name__ == "__main__":
-    vs = imutils.video.VideoStream(src=1).start()
-    time.sleep(2.0)
-    # green ball
+# if __name__ == "__main__":
+    # vs = imutils.video.VideoStream(src=1).start()
+    # time.sleep(2.0)
+    # # green ball
     uhsv = (93, 255, 199)
     lhsv = (42, 121, 39)
     erode = 0
     dilate = 5
-    # # purple ball
-    # uhsv = (144, 171, 224)
-    # lhsv = (121, 109, 89)
-    # erode = 1
-    # dilate = 10
-
-    while True:
-        # time.sleep(0.7)
-        frame = vs.read()
-        img, center, radius, cam_info = detect_ball(frame, uhsv, lhsv, erode, dilate)
-
-        cv2.imshow("VideoStream", img)
-
-        key = cv2.waitKey(1)  # this is really important that it should be waitkey(1) not waitkey(0)
-
-        if key == 'q':
-            break
-
-    print("________________end of the program________________")
+    # # # purple ball
+    # # uhsv = (144, 171, 224)
+    # # lhsv = (121, 109, 89)
+    # # erode = 1
+    # # dilate = 10
+    #
+    # while True:
+    #     # time.sleep(0.7)
+    #     frame = vs.read()
+    #     img, center, radius, cam_info = detect_ball(frame, uhsv, lhsv, erode, dilate)
+    #
+    #     cv2.imshow("VideoStream", img)
+    #
+    #     key = cv2.waitKey(1)  # this is really important that it should be waitkey(1) not waitkey(0)
+    #
+    #     if key == 'q':
+    #         break
+    #
+    # print("________________end of the program________________")
