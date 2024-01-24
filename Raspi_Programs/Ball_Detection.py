@@ -12,7 +12,7 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
     :param lower_hsv: A number, the lower bound of HSV for color thresholding.
     :param erode:
     :param dilate:
-    :return: (the frame taken frame the camera, )
+    :return: (frame, center, radius, frame_info)
     """
     center = None  # this is a tuple which is the cordination of the center
     radius = 0  # this is the radious of the ball found, it will get value later in the code.
@@ -41,9 +41,6 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
             Dilate is often used to accentuate or emphasize features in an image.
     """
     mask = cv2.dilate(mask, None, iterations=dilate)
-    cv2.imwrite(
-        r'/home/ca2023/Desktop/mask.png',
-        mask)
 
     # finding contours of the processed frame
     cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -54,6 +51,7 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
     # if we've had any contours in the picture,
     # we will find the center of the ball and return it as output, else we return None as output
     if len(cnts) > 0:
+
         # c is a contour that hase the biggest area among all contours that we found in the frame.
         c = max(cnts, key=cv2.contourArea)
 
@@ -69,16 +67,12 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
         # Check if the radius of the enclosing circle is within a specific range.
         # We check this so that if other objects had the same color intensity, they would not be detected as the target ball.
         if radius > 10 and radius < 170:
+            
             # Drawing the enclosing circle
             cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 255), 2)
 
             # Drawing the center of the circle
             cv2.circle(frame, center, 5, (0, 0, 255), -1)
-
-            print(radius)
-            print(center)
-
-            # return frame, center, radius, True
 
     # Adding lines and rects to the frame.
     width = frame.shape[1]
@@ -97,7 +91,6 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
 
     return frame, center, radius, {"frame_center": center_cord, "sp": sp, "ep": ep}
 
-
 if __name__ == "__main__":
     vs = imutils.video.VideoStream(src=1).start()
     time.sleep(2.0)
@@ -113,17 +106,12 @@ if __name__ == "__main__":
     # dilate = 10
 
     while True:
-        # time.sleep(0.7)
-        # print("in loop")
         frame = vs.read()
-        # print("Search for ball")
         img, center, radius, cam_info = detect_ball(frame, uhsv, lhsv, erode, dilate)
+        print(center)
 
         cv2.imshow("VideoStream", img)
-        # if notfound is False:
-        #     print(img.shape)
-        #     print(type(img))
-        #     cv2.imshow("contour", img)
+
         key = cv2.waitKey(1)  # this is really important that it should be waitkey(1) not waitkey(0)
         if key == 'q':
             break
