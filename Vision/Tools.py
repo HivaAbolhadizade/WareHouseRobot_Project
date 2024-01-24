@@ -29,6 +29,8 @@ def get_frame(cam):
 
 
 
+
+
     return ret, resized_frame
 
 # def draw_rect(rect, frame, center):
