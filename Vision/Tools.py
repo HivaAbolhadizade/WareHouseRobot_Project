@@ -1,5 +1,6 @@
 import cv2
 import imutils
+from imutils.video import VideoStream
 import time
 
 
@@ -20,6 +21,8 @@ def get_frame(cam):
     ep = (width - sp[0], height - sp[1])
 
     cv2.rectangle(resized_frame, sp, ep, color=(255, 0, 0), thickness=3)
+
+    return resized_frame
 
 
 
@@ -42,11 +45,13 @@ def get_frame(cam):
 #     return center
 
 
-cam = cv2.VideoCapture(0)
+cam = cv2.VideoCapture(1)
 while True:
     # ret, frame = get_frame(cam=cam)  # shape of the frame : (hight, width, channel)
     # print(frame)
+    """
     ret, frame = cam.read()
+
     # print(ret)
     # print(frame)
     resized_frame = imutils.resize(frame, width=600)
@@ -64,7 +69,8 @@ while True:
     ep = (width - sp[0], height - sp[1])
 
     cv2.rectangle(resized_frame, sp, ep, color=(255, 0, 0), thickness=3)
-
+    """
+    resized_frame = get_frame(cam)
     cv2.imshow('stream', resized_frame)
     # print(frame.shape)
     key = cv2.waitKey(1)

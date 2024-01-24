@@ -3,7 +3,7 @@ import time
 
 from servo import *
 import Movement_v2 as Moving
-
+from imutils.video import VideoStream
 # _____Parameters_____
 # Pin numbering as needed
 
