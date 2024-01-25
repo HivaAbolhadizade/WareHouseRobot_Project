@@ -12,9 +12,9 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
     :param lower_hsv: A number, the lower bound of HSV for color thresholding.
     :param erode:
     :param dilate:
-    :return: (frame, center, radius, frame_info)
+    :return: (the frame taken frame the camera, )
     """
-    center = None  # this is a tuple that is the coordination of the center
+    center = None  # this is a tuple which is the cordination of the center
     radius = 0  # this is the radious of the ball found, it will get value later in the code.
 
     # resizing the frame so that it would be easier to handle the image and also lowers the computation.
@@ -41,6 +41,9 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
             Dilate is often used to accentuate or emphasize features in an image.
     """
     mask = cv2.dilate(mask, None, iterations=dilate)
+    cv2.imwrite(
+        r'/home/ca2023/Desktop/mask.png',
+        mask)
 
     # finding contours of the processed frame
     cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -51,7 +54,6 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
     # if we've had any contours in the picture,
     # we will find the center of the ball and return it as output, else we return None as output
     if len(cnts) > 0:
-
         # c is a contour that hase the biggest area among all contours that we found in the frame.
         c = max(cnts, key=cv2.contourArea)
 
@@ -73,6 +75,11 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
             # Drawing the center of the circle
             cv2.circle(frame, center, 5, (0, 0, 255), -1)
 
+            # print(radius)
+            # print(center)
+
+            # return frame, center, radius, True
+
     # Adding lines and rects to the frame.
     width = frame.shape[1]
     height = frame.shape[0]
@@ -88,39 +95,33 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
 
     cv2.rectangle(frame, sp, ep, color=(255, 0, 0), thickness=3)
 
-    return frame, center, radius, {"frame_center": center_cord, "sp": sp, "ep": ep, "shape": (width, height)}
+    return frame, center, radius, {"frame_center": center_cord, "sp": sp, "ep": ep}
 
 
-"""
-if __name__ == "__main__":
-    vs = imutils.video.VideoStream(src=1).start()
-    time.sleep(2.0)
-    # green ball
+# if __name__ == "__main__":
+    # vs = imutils.video.VideoStream(src=1).start()
+    # time.sleep(2.0)
+    # # green ball
     uhsv = (93, 255, 199)
     lhsv = (42, 121, 39)
     erode = 0
     dilate = 5
-    # # purple ball
-    # uhsv = (144, 171, 224)
-    # lhsv = (121, 109, 89)
-    # erode = 1
-    # dilate = 10
-
-    while True:
-        frame = vs.read()
-        img, center, radius, cam_info = detect_ball(frame, uhsv, lhsv, erode, dilate)
-        # print(center[0])
-        # print(cam_info['frame_center'])
-        # print(cam_info['sp'])
-        # print(cam_info['ep'])
-
-
-        cv2.imshow("VideoStream", img)
-
-        key = cv2.waitKey(1)  # this is really important that it should be waitkey(1) not waitkey(0)
-
-        if key == 'q':
-            break
-
-    print("________________end of the program________________")
-"""
+    # # # purple ball
+    # # uhsv = (144, 171, 224)
+    # # lhsv = (121, 109, 89)
+    # # erode = 1
+    # # dilate = 10
+    #
+    # while True:
+    #     # time.sleep(0.7)
+    #     frame = vs.read()
+    #     img, center, radius, cam_info = detect_ball(frame, uhsv, lhsv, erode, dilate)
+    #
+    #     cv2.imshow("VideoStream", img)
+    #
+    #     key = cv2.waitKey(1)  # this is really important that it should be waitkey(1) not waitkey(0)
+    #
+    #     if key == 'q':
+    #         break
+    #
+    # print("________________end of the program________________")
