@@ -221,8 +221,8 @@ if __name__ == "__main__":
                 turn_left()  # we can find a formula based on the distance to r bound for power$
                 continue
 
-        if gate_state:
-
+        # if gate_state:
+        break
 
         # gateOutPut = detectGate(frame=frame)
         # if gateOutput is not None and isBallcatched:
