@@ -140,6 +140,7 @@ def distance():
     """
     return 5
 
+
 if __name__ == "__main__":
     # Starting the camera
     vs = VideoStream(src=1).start()
@@ -159,6 +160,7 @@ if __name__ == "__main__":
 
     while True:
         # Getting frame from webcam
+        time.sleep(0.5)
         frame = vs.read()
 
         if ball_state:
@@ -173,7 +175,7 @@ if __name__ == "__main__":
                 break
 
             # Checking if we have seen the ball
-            if center[0] != None: isBallDetected = True
+            if radius != 0: isBallDetected = True
 
             if isBallDetected is True:
                 x_ball = center[0]
@@ -189,16 +191,15 @@ if __name__ == "__main__":
             l_bound = 260
             r_bound = 340
 
-
             if y_ball >= 408:
-                if l_bound <= x_ball <= r_bound: # should change this later%
+                if l_bound <= x_ball <= r_bound:  # should change this later%
                     avg_dist = sum([distance() for i in range(3)]) // 3
                     if avg_dist > 6:
                         forward(power=0.1)
 
                     print("___ CATCHING THE BALL ___")
 
-                    # Changing the state
+                    # Changing the state, transferring the robot to gate state
                     ball_state = False
                     gate_state = True
 
@@ -219,9 +220,8 @@ if __name__ == "__main__":
             elif x_ball < l_bound:
                 turn_left()  # we can find a formula based on the distance to r bound for power$
                 continue
-        break
 
-
+        if gate_state:
 
 
         # gateOutPut = detectGate(frame=frame)

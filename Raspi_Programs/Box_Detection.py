@@ -2,9 +2,13 @@ import cv2
 import imutils
 from imutils.video import VideoStream
 import time
+# from Tools import draw_rect
 
 
-def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
+
+
+
+def detect_box(frame, upper_hsv, lower_hsv, erode, dilate, num_box=1):
     """
     This method finds the center of the ball and detects the ball using color thresholding in HSV.
     :param frame: A (width, height, 3) array, representing our RGB image.
@@ -12,12 +16,13 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
     :param lower_hsv: A number, the lower bound of HSV for color thresholding.
     :param erode:
     :param dilate:
-    :return: (frame, center, radius, frame_info)
+    :return: None if there is no ball in front of the camera,
+    else, a tuple (x, y) that are the coordinates of the center of the ball.
     """
-    center = None  # this is a tuple that is the coordination of the center
-    radius = 0  # this is the radious of the ball found, it will get value later in the code.
-
+    center = None
+    size = 0
     # resizing the frame so that it would be easier to handle the image and also lowers the computation.
+
     frame = imutils.resize(frame, width=600)
 
     # reducing the details in the frame.
@@ -51,29 +56,29 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
     # if we've had any contours in the picture,
     # we will find the center of the ball and return it as output, else we return None as output
     if len(cnts) > 0:
-
         # c is a contour that hase the biggest area among all contours that we found in the frame.
-        c = max(cnts, key=cv2.contourArea)
+        cnt = max(cnts, key=cv2.contourArea)
+
 
         # finding the smallest enclosing circle
-        ((x, y), radius) = cv2.minEnclosingCircle(c)
+        rect = cv2.minAreaRect(cnt)
 
-        # Calculate the moments of the contour
-        M = cv2.moments(c)
+        center = tuple(map(int, rect[0]))
+        size = tuple(map(int, rect[1]))
 
-        # finding the center of the surface using moments
-        center = (int(M['m10'] / M['m00']), int(M['m01'] / M['m00']))
+        sp = (int(center[0] - size[0] / 2), int(center[1] - size[1] / 2))
+        ep = (int(center[0] + size[0] / 2), int(center[1] + size[1] / 2))
 
-        # Check if the radius of the enclosing circle is within a specific range.
-        # We check this so that if other objects had the same color intensity, they would not be detected as the target ball.
-        if radius > 10 and radius < 170:
-            # Drawing the enclosing circle
-            cv2.circle(frame, (int(x), int(y)), int(radius), (0, 255, 255), 2)
+        cv2.rectangle(frame, sp, ep, (0, 0, 255), 2)
+        cv2.circle(frame, center, 5, (255, 255, 255), -1)
 
-            # Drawing the center of the circle
-            cv2.circle(frame, center, 5, (0, 0, 255), -1)
+        # Display the frame
+        # cv2.imshow('Captured img', frame)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
 
     # Adding lines and rects to the frame.
+
     width = frame.shape[1]
     height = frame.shape[0]
     center_cord = (width // 2, height // 2)
@@ -88,27 +93,24 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
 
     cv2.rectangle(frame, sp, ep, color=(255, 0, 0), thickness=3)
 
-    return frame, center, radius, {"frame_center": center_cord, "sp": sp, "ep": ep, "shape": (width, height)}
+    return frame, center, size, {"frame_center": center_cord, "sp": sp, "ep": ep, "shape": (width, height)}
 
 
-"""
+
+
 if __name__ == "__main__":
     vs = imutils.video.VideoStream(src=1).start()
     time.sleep(2.0)
-    # green ball
-    uhsv = (93, 255, 199)
-    lhsv = (42, 121, 39)
-    erode = 0
-    dilate = 5
-    # # purple ball
-    # uhsv = (144, 171, 224)
-    # lhsv = (121, 109, 89)
-    # erode = 1
-    # dilate = 10
+
+    # purple box
+    uhsv = (169, 179, 193)
+    lhsv = (140, 48, 76)
+    erode = 3
+    dilate = 11
 
     while True:
         frame = vs.read()
-        img, center, radius, cam_info = detect_ball(frame, uhsv, lhsv, erode, dilate)
+        img, center, size, cam_info = detect_box(frame, uhsv, lhsv, erode, dilate)
         # print(center[0])
         # print(cam_info['frame_center'])
         # print(cam_info['sp'])
@@ -122,4 +124,3 @@ if __name__ == "__main__":
             break
 
     print("________________end of the program________________")
-"""
