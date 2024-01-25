@@ -4,6 +4,7 @@ import cv2
 # from servo import *
 # import Movement_v2 as Moving
 from imutils.video import VideoStream
+from Ball_Detection import detect_ball
 
 # _____Parameters_____
 # Pin numbering as needed
@@ -63,6 +64,7 @@ def forward(power=0.5):
     GPIO.output(B_IN1, False)
     """
 
+
 def backward(power=0.5):
     print("Backward")
     """
@@ -79,6 +81,7 @@ def backward(power=0.5):
     GPIO.output(B_IN2, False)
     """
 
+
 def turn_right(power=0.8):
     print("Right")
     """
@@ -93,6 +96,7 @@ def turn_right(power=0.8):
     # GPIO.output(B_IN3, False)
     """
 
+
 def turn_left(power=0.8):
     print("Left")
     """
@@ -104,6 +108,7 @@ def turn_left(power=0.8):
     GPIO.output(F_IN4, False)
     GPIO.output(B_IN4, False)
     """
+
 
 def distance():
     print("Measuring distance")
@@ -133,21 +138,92 @@ def distance():
     print("Distance:", distance, "cm")
     return distance
     """
+    return 5
 
 
 if __name__ == "__main__":
+    # Starting the camera
     vs = VideoStream(src=1).start()
     time.sleep(2.0)
+
+    # Args
+    gate_state = False
+    ball_state = True
+
+    # Green ball threshold
+    uhsv = (93, 255, 199)
+    lhsv = (42, 121, 39)
+    erode = 0
+    dilate = 5
+
     isBallCatched = False
 
     while True:
-        # time.sleep(0.7)
+        # Getting frame from webcam
+        time.sleep(0.5)
         frame = vs.read()
-        cv2.imshow("frame", frame)
-        # key = cv2.waitKey(1)
-        # if key == 'q':
-        #     break
-        output = detecting_ball(frame=frame)
+
+        if ball_state:
+            isBallDetected = False
+            frame, center, radius, frame_info = detect_ball(frame=frame, upper_hsv=uhsv, lower_hsv=lhsv, erode=erode,
+                                                            dilate=dilate)
+
+            cv2.imshow("VideoStream", frame)
+
+            key = cv2.waitKey(1)
+            if key == 'e':
+                break
+
+            # Checking if we have seen the ball
+            if radius != 0: isBallDetected = True
+
+            if isBallDetected is True:
+                x_ball = center[0]
+                y_ball = center[1]
+            else:
+                turn_right()
+                continue
+
+            # l_bound = frame_info['sp'][0]
+            # r_bound = frame_info['ep'][0]
+
+            # this should be deleted, just for test%
+            l_bound = 260
+            r_bound = 340
+
+            if y_ball >= 408:
+                if l_bound <= x_ball <= r_bound:  # should change this later%
+                    avg_dist = sum([distance() for i in range(3)]) // 3
+                    if avg_dist > 6:
+                        forward(power=0.1)
+
+                    print("___ CATCHING THE BALL ___")
+
+                    # Changing the state, transferring the robot to gate state
+                    ball_state = False
+                    gate_state = True
+
+                    continue
+
+                else:
+                    backward(power=0.5)
+                    continue
+
+            if l_bound <= x_ball <= r_bound:
+                forward()
+                continue
+
+            elif x_ball > r_bound:
+                turn_right()  # we can find a formula based on the distance to r bound for power$
+                continue
+
+            elif x_ball < l_bound:
+                turn_left()  # we can find a formula based on the distance to r bound for power$
+                continue
+
+        if gate_state:
+
+
         # gateOutPut = detectGate(frame=frame)
         # if gateOutput is not None and isBallcatched:
         #     if 200 <= gateOutPut[0] <= 400:
