@@ -4,7 +4,7 @@ from imutils.video import VideoStream
 import time
 
 
-def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
+def detect_sign(frame, upper_hsv, lower_hsv, erode, dilate):
     """
     This method finds the center of the ball and detects the ball using color thresholding in HSV.
     :param frame: A (width, height, 3) array, representing our RGB image.
@@ -90,37 +90,30 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
 
     return frame, center, radius, {"frame_center": center_cord, "sp": sp, "ep": ep, "shape": (width, height)}
 
-
-"""
 if __name__ == "__main__":
-    vs = imutils.video.VideoStream(src=1).start()
+    vs = imutils.video.VideoStream(src=0).start()
     time.sleep(2.0)
-    # green ball
+
+    # green sign
     uhsv = (93, 255, 199)
     lhsv = (42, 121, 39)
     erode = 0
     dilate = 5
-    # # purple ball
-    # uhsv = (144, 171, 224)
-    # lhsv = (121, 109, 89)
-    # erode = 1
-    # dilate = 10
 
+    """
+    # purple sign
+    uhsv = (144, 171, 224)
+    lhsv = (121, 109, 89)
+    erode = 1
+    dilate = 10
+    """
     while True:
         frame = vs.read()
-        img, center, radius, cam_info = detect_ball(frame, uhsv, lhsv, erode, dilate)
-        # print(center[0])
-        # print(cam_info['frame_center'])
-        # print(cam_info['sp'])
-        # print(cam_info['ep'])
-
+        img, center, radius, cam_info = detect_sign(frame, uhsv, lhsv, erode, dilate)
 
         cv2.imshow("VideoStream", img)
-
         key = cv2.waitKey(1)  # this is really important that it should be waitkey(1) not waitkey(0)
-
         if key == 'q':
             break
 
     print("________________end of the program________________")
-"""

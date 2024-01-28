@@ -48,6 +48,7 @@ def generate_frames():
 def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+
 @app.route('/humidity', methods=["GET"])
 def humidity():
     humidity, temperature = Adafruit_DHT.read_retry(11, 25)
@@ -68,7 +69,7 @@ def temp():
     response = {
         'status_code': 200,
         'data': {
-            'temperature': str(temperature + '%'),
+            'temperature': str(temperature),
         }
     }
 

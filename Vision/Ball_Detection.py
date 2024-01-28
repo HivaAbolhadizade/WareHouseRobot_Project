@@ -74,7 +74,7 @@ def detect_ball(frame, upper_hsv, lower_hsv, erode, dilate):
         # cv2.imshow("Frame", frame)
 
 
-    return Frame, output, True
+    return frame, output, True
 
 
 
@@ -88,6 +88,11 @@ if __name__ == "__main__":
     erode = 0
     dilate = 5
 
+    # yellow gate
+    guhsv = (28, 255, 11)
+    glhsv = (23, 210, 20)
+    gerode = 0
+    gdilate = 0
     '''
     # purple ball
     uhsv = (144, 171, 224)
@@ -101,7 +106,7 @@ if __name__ == "__main__":
         time.sleep(0.7)
         frame = vs.read()
         print("Search for ball")
-        img, output, notfound = detect_ball(frame, uhsv, lhsv, erode, dilate)
+        img, output, notfound = detect_ball(frame, guhsv, glhsv, gerode, gdilate)
 
         cv2.imshow("contour", img)
 

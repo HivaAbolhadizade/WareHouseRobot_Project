@@ -2,6 +2,7 @@ import cv2
 import imutils
 from imutils.video import VideoStream
 import time
+import numpy as np
 # from Tools import draw_rect
 
 
@@ -14,15 +15,21 @@ def detect_box(frame, upper_hsv, lower_hsv, erode, dilate, num_box=1):
     :param frame: A (width, height, 3) array, representing our RGB image.
     :param upper_hsv: A number, the upper bound of HSV for color thresholding.
     :param lower_hsv: A number, the lower bound of HSV for color thresholding.
-    :param erode:
-    :param dilate:
+    :param erode: Erosion is a morphological operation that has the effect of "shrinking"
+        or eroding the boundaries of the white regions in the binary image.
+        It is particularly useful for removing small white objects,
+        separating overlapping objects, or breaking thin connections between objects.
+    :param dilate: Complementary to erosion. While erosion tends to "shrink" the boundaries of white regions in a binary image,
+            dilation has the opposite effect – it tends to "expand" or grow the white regions.
+            Dilate is often used to accentuate or emphasize features in an image.
     :return: None if there is no ball in front of the camera,
     else, a tuple (x, y) that are the coordinates of the center of the ball.
     """
+    # init default values of the output
     center = None
     size = 0
-    # resizing the frame so that it would be easier to handle the image and also lowers the computation.
 
+    # resizing the frame so that it would be easier to handle the image and also lowers the computation.
     frame = imutils.resize(frame, width=600)
 
     # reducing the details in the frame.
@@ -59,7 +66,6 @@ def detect_box(frame, upper_hsv, lower_hsv, erode, dilate, num_box=1):
         # c is a contour that hase the biggest area among all contours that we found in the frame.
         cnt = max(cnts, key=cv2.contourArea)
 
-
         # finding the smallest enclosing circle
         rect = cv2.minAreaRect(cnt)
 
@@ -72,13 +78,7 @@ def detect_box(frame, upper_hsv, lower_hsv, erode, dilate, num_box=1):
         cv2.rectangle(frame, sp, ep, (0, 0, 255), 2)
         cv2.circle(frame, center, 5, (255, 255, 255), -1)
 
-        # Display the frame
-        # cv2.imshow('Captured img', frame)
-        # cv2.waitKey(0)
-        # cv2.destroyAllWindows()
-
     # Adding lines and rects to the frame.
-
     width = frame.shape[1]
     height = frame.shape[0]
     center_cord = (width // 2, height // 2)
@@ -96,17 +96,29 @@ def detect_box(frame, upper_hsv, lower_hsv, erode, dilate, num_box=1):
     return frame, center, size, {"frame_center": center_cord, "sp": sp, "ep": ep, "shape": (width, height)}
 
 
-
-
+"""
 if __name__ == "__main__":
     vs = imutils.video.VideoStream(src=1).start()
     time.sleep(2.0)
 
-    # purple box
-    uhsv = (169, 179, 193)
-    lhsv = (140, 48, 76)
-    erode = 3
-    dilate = 11
+    # # purple box
+    # uhsv = (169, 179, 193)
+    # lhsv = (140, 48, 76)
+    # erode = 3
+    # dilate = 11
+
+    # green box
+    uhsv = (93, 255, 199)
+    lhsv = (42, 121, 39)
+    erode = 0
+    dilate = 5
+
+    # # brown box
+    # uhsv = (25, 136, 157)
+    # lhsv = (17, 56, 131)
+    # erode = 10
+    # dilate = 21
+
 
     while True:
         frame = vs.read()
@@ -116,6 +128,10 @@ if __name__ == "__main__":
         # print(cam_info['sp'])
         # print(cam_info['ep'])
 
+        # edges = cv2.cvtColor(edges, cv2.COLOR_GRAY2BGR)
+
+        # combined_image = np.hstack((edges, img))
+
 
         cv2.imshow("VideoStream", img)
 
@@ -124,3 +140,4 @@ if __name__ == "__main__":
             break
 
     print("________________end of the program________________")
+"""
