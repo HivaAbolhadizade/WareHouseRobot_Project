@@ -4,3 +4,4 @@ numpy
 imutils~=0.5.4
 flask
 flask-cors
+Adafruit-DHT
