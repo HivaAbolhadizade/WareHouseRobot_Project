@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Robot Control</title>
+</head>
+<body>
+    <img src="{{ url_for('video_feed') }}" width="640" height="480">
+    <br>
+    <button onclick="sendCommand('forward')">Forward</button>
+    <button onclick="sendCommand('backward')">Backward</button>
+    <button onclick="sendCommand('left')">Left</button>
+    <button onclick="sendCommand('right')">Right</button>
+
+    <script>
+        function sendCommand(command) {
+            fetch('/' + command);
+        }
+    </script>
+</body>
+</html>
