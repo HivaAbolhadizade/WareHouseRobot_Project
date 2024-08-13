@@ -85,8 +85,8 @@ functionality and usability.
 ![Screenshot 2024-01-28 201845](https://github.com/user-attachments/assets/1062cdfb-724d-421b-86b1-d98eb2050760)
 
 ## Designing and constructing the power management:
-![Screenshot 2024-08-13 124118](https://github.com/user-attachments/assets/0bfa93e7-e943-4364-99a0-31ccbd067d30)
-![Screenshot 2024-08-13 124149](https://github.com/user-attachments/assets/a0bce3a5-2ace-40d4-aa1e-6a2f1099725c)
+<img src="https://github.com/user-attachments/assets/0bfa93e7-e943-4364-99a0-31ccbd067d30" alt="description" width="400"/>
+<img src="https://github.com/user-attachments/assets/a0bce3a5-2ace-40d4-aa1e-6a2f1099725c" alt="description" width="400"/>
 1. First, we print the circuit diagram of the power
 management on a glass-coated paper with
 dimensions of 10*10
@@ -183,7 +183,9 @@ boxes is transferred to the entity page.
 Pressing the reset button sets the number
 of boxes to zero, and the user must enter
 the box count again.
-<img src="https://github.com/user-attachments/assets/fe9fbf54-a6a1-4553-8765-855c62ad8e77" alt="description" width="400"/>
+<img src="https://github.com/user-attachments/assets/fe9fbf54-a6a1-4553-8765-855c62ad8e77" alt="description" width="200"/>
+
+
 Page Two: This page is designed for
 manual control of the robot, where
 the robot moves boxes around and
@@ -191,7 +193,9 @@ picks them up or drops them using
 buttons. The blue box in the image
 also displays the view from the
 robot's perspective.
-<img src="https://github.com/user-attachments/assets/d4447d51-c2af-4472-b27b-17ed92333bce" alt="description" width="400"/>
+<img src="https://github.com/user-attachments/assets/d4447d51-c2af-4472-b27b-17ed92333bce" alt="description" width="200"/>
+
+
 Page Three: This page represents
 automatic movement, where the
 the robot automatically detects boxes
@@ -199,13 +203,17 @@ and moves them to the desired
 destination. The blue box in the
 image indicates the view from the
 robot's perspective.
-<img src="https://github.com/user-attachments/assets/c47f6859-a5cb-4300-80d4-6ce744072f82" alt="description" width="400"/>
+<img src="https://github.com/user-attachments/assets/c47f6859-a5cb-4300-80d4-6ce744072f82" alt="description" width="200"/>
+
+
 Page Four: This page displays
 entities, and for each box placed by
 the robot, a numerical value is
 incremented by the number
 assigned to the box.
-<img src="https://github.com/user-attachments/assets/6483f703-a072-44aa-914e-b9f936c1c2be" alt="description" width="400"/>
+<img src="https://github.com/user-attachments/assets/6483f703-a072-44aa-914e-b9f936c1c2be" alt="description" width="200"/>
+
+
 Page Five: The sensor page functions
 by retrieving humidity and
 temperature values from the
@@ -216,7 +224,7 @@ pertains to a smoke detection sensor.
 In the event of smoke detection, an
 alert symbol appears next to the
 sensor as a warning.
-<img src="https://github.com/user-attachments/assets/d138121c-348b-433a-9ea1-b41c424866d5" alt="description" width="400"/>
+<img src="https://github.com/user-attachments/assets/d138121c-348b-433a-9ea1-b41c424866d5" alt="description" width="200"/>
 
 ## Image processing:
 ![image](https://github.com/user-attachments/assets/28e6c7ce-06e5-4dd8-9509-4dccca09e8ff)
@@ -238,12 +246,12 @@ among the found contours.
 around the contour.
 8. Draw the rectangle with its center on the
 frame.
-9. Draw guide lines on the frame.
+9. Draw guidelines on the frame.
 10. Output the image.
 11. Output the rectangle center.
 12. Output the rectangle size.
 13. Output information about the frame
-(frame center, frame length and width, ...).
+(frame center, frame length, and width, ...).
 
 
 Method for finding the placement location
@@ -252,8 +260,8 @@ In this method, we identify the sign in front
 of which the ball grabbed by the robot is
 placed. The general algorithm of this
 method is as follows:
-1.Resize the captured frame.
-2.Image noise removal.
+1. Resize the captured frame.
+2. Image noise removal.
 3. Convert the frame color system to
 HSV.
 4. Filtering out all colors in the frame
