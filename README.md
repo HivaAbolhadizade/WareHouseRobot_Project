@@ -104,17 +104,17 @@ ensure that only the circuit design remains
 on it.
 4. After separating the papers, we immerse the
 fiberglass in tea acid so that only the circuit
-design remains on it.
+the design remains on it.
 5. After that, we place the components on the board
 using a regular drill with a 1mm drill bit and solder
 the components onto the board. Soldering starts
 with low-profile components like resistors or diodes
 and ends with components like Tip2259. If your
 board is bone-shaped, use a 40w soldering iron. For
-components requiring heat sinking like Tip2259, first
+components requiring heat sinking like Tip2259, first,
 connect the heat sink to the component and then
-solder.
-![photo1706289670](https://github.com/user-attachments/assets/e830e852-190e-4d38-9ba2-9d5d8fa03d9a)
+the solder.
+<img src="https://github.com/user-attachments/assets/e830e852-190e-4d38-9ba2-9d5d8fa03d9a" alt="description" width="400"/>
 
 
 
