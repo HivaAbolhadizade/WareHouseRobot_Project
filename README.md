@@ -2,10 +2,7 @@
 # Warehouse Robot
 <img src="https://github.com/user-attachments/assets/dcd70d99-d0f7-4ab6-9b08-57bd2034f979" alt="description" width="800"/>
 <img src="https://github.com/user-attachments/assets/988e52fd-9066-4501-87d0-776e88a2e824" alt="description" width="800"/>
-<video width="800" controls>
-        <source src="https://github.com/user-attachments/assets/5ad2d584-fbfd-4366-b079-c4a24f78387b" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+
 ![Untitledvideo-MadewithClipchamp1-ezgif com-optimize](https://github.com/user-attachments/assets/5ad2d584-fbfd-4366-b079-c4a24f78387b)
 
 ## Achievement
