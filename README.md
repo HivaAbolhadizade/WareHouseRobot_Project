@@ -87,6 +87,7 @@ functionality and usability.
 ## Designing and constructing the power management:
 <img src="https://github.com/user-attachments/assets/0bfa93e7-e943-4364-99a0-31ccbd067d30" alt="description" width="400"/>
 <img src="https://github.com/user-attachments/assets/a0bce3a5-2ace-40d4-aa1e-6a2f1099725c" alt="description" width="400"/>
+
 1. First, we print the circuit diagram of the power
 management on a glass-coated paper with
 dimensions of 10*10
