@@ -1,7 +1,11 @@
 # Robotic Project
 # Warehouse Robot
-![Screenshot 2024-08-13 120944](https://github.com/user-attachments/assets/dcd70d99-d0f7-4ab6-9b08-57bd2034f979)
-![Screenshot 2024-08-13 121015](https://github.com/user-attachments/assets/988e52fd-9066-4501-87d0-776e88a2e824)
+<img src="https://github.com/user-attachments/assets/dcd70d99-d0f7-4ab6-9b08-57bd2034f979" alt="description" width="800"/>
+<img src="https://github.com/user-attachments/assets/988e52fd-9066-4501-87d0-776e88a2e824" alt="description" width="800"/>
+<video width="800" controls>
+        <source src="https://github.com/user-attachments/assets/5ad2d584-fbfd-4366-b079-c4a24f78387b" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 ![Untitledvideo-MadewithClipchamp1-ezgif com-optimize](https://github.com/user-attachments/assets/5ad2d584-fbfd-4366-b079-c4a24f78387b)
 
 ## Achievement
@@ -127,7 +131,30 @@ motor, we supplied input to the L298 and noted the
 wheel rotation direction by giving manual flags.
 
 # Body construction and component placement
+In the design and development of a warehouse robot, careful consideration of body construction and component placement is crucial for ensuring optimal performance, reliability, and safety. Below is a detailed overview of best practices in these areas, particularly relevant for a first-time robot project.
 
+Body Construction
+1. Durability and Robustness:
+
+Materials: Select high-strength, lightweight materials such as aluminum alloys or reinforced plastics for the robot's body. These materials balance durability with weight considerations, enabling the robot to withstand impacts and operate reliably in a demanding warehouse environment.
+Design Reinforcements: Identify and reinforce areas of the robot that are most susceptible to wear and tear, such as corners and edges. This helps minimize damage from accidental collisions and prolongs the robot’s lifespan.
+2. Size and Shape:
+
+Dimensions: Design the robot with dimensions that allow it to navigate standard warehouse aisles and spaces. Ensure the robot is compact enough to maneuver through narrow passages but large enough to handle typical cargo sizes.
+Shape: Opt for a low center of gravity to enhance stability and prevent tipping. A streamlined shape reduces the risk of getting stuck or caught on obstacles.
+3. Mobility:
+
+Wheels vs. Tracks: Choose between wheels or tracks based on the warehouse floor conditions. Wheels are suitable for smooth surfaces, while tracks are better for uneven or rough terrain. Consider advanced options like omni-wheels or mecanum wheels for enhanced maneuverability.
+Suspension System: Incorporate a suspension system if the robot needs to navigate uneven floors. This feature helps maintain stability and ensures smoother operation across different surface types.
+Component Placement
+1. Sensors and Cameras:
+
+Strategic Placement: Position sensors and cameras at key locations such as the front, sides, and top of the robot. This setup provides comprehensive coverage for obstacle detection, navigation, and item recognition.
+Types of Sensors: Utilize a combination of LIDAR, ultrasonic sensors, and cameras to achieve accurate environmental mapping and reliable object detection.
+2. Manipulators:
+
+Location and Reach: Place manipulators (arms, grippers) to maximize their range and flexibility. Ensure that they can effectively handle items from various positions and heights within the robot’s operational area.
+Design and Tools: Equip manipulators with suitable tools or grippers designed for specific tasks, such as lifting boxes or handling pallets.
 
 ## How to run:
 Make sure you have `python` installed on your system. Instal the required dependency by running `pip install -r requirements.txt` in your terminal.
