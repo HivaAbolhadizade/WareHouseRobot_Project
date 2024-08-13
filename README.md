@@ -236,7 +236,8 @@ sensor as a warning.
 
 ## Image processing:
 ![image](https://github.com/user-attachments/assets/28e6c7ce-06e5-4dd8-9509-4dccca09e8ff)
-Method for detecting boxes (detect_box)
+
+#### Method for detecting boxes (detect_box)
 In this method, a technique for finding
 boxes and outputting frames is
 implemented. The general algorithm of
@@ -262,7 +263,7 @@ frame.
 (frame center, frame length, and width, ...).
 
 
-Method for finding the placement location
+#### Method for finding the placement location
 of the box (detect_sign)
 In this method, we identify the sign in front
 of which the ball grabbed by the robot is
