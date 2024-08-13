@@ -10,10 +10,7 @@ This project was the top-performing project of the term, earning the highest sco
 Dr. Jamshidi
 
 ## Executives:
-Hiva Abolhadi Zadeh
-Amirhossein Abolhasani
-Kimia Mashhadi Zadeh
-Sadra Kochakzadeh
+Hiva AbolhadiZadeh - Amirhossein Abolhasani -Kimia Mashhadi Zadeh - Sadra Kochakzadeh
 
 ## Introduction to the Robot and its Objective:
 In an era of technological advancement and commerce, warehouse management has become one of the most marginalized and evolving areas. One of the most captivating developments in this regard is the introduction of warehouse robots, which have emerged as representatives
@@ -172,7 +169,8 @@ definitions should be made in the
 common class on the main page
 so that the navigation between
 pages can be facilitated.
-Page One: For the IP change conditions, we
+##### Page One:
+For the IP change conditions, we
 have included an input box so that the user
 is prompted to enter the desired server IP
 as soon as they enter. After specifying the
@@ -188,7 +186,8 @@ the box count again.
 <img src="https://github.com/user-attachments/assets/fe9fbf54-a6a1-4553-8765-855c62ad8e77" alt="description" width="200"/>
 
 
-Page Two: This page is designed for
+##### Page Two: 
+This page is designed for
 manual control of the robot, where
 the robot moves boxes around and
 picks them up or drops them using
@@ -199,7 +198,8 @@ robot's perspective.
 <img src="https://github.com/user-attachments/assets/d4447d51-c2af-4472-b27b-17ed92333bce" alt="description" width="200"/>
 
 
-Page Three: This page represents
+##### Page Three:
+This page represents
 automatic movement, where the
 the robot automatically detects boxes
 and moves them to the desired
@@ -210,7 +210,8 @@ robot's perspective.
 <img src="https://github.com/user-attachments/assets/c47f6859-a5cb-4300-80d4-6ce744072f82" alt="description" width="200"/>
 
 
-Page Four: This page displays
+##### Page Four:
+This page displays
 entities, and for each box placed by
 the robot, a numerical value is
 incremented by the number
@@ -219,7 +220,8 @@ assigned to the box.
 <img src="https://github.com/user-attachments/assets/6483f703-a072-44aa-914e-b9f936c1c2be" alt="description" width="200"/>
 
 
-Page Five: The sensor page functions
+##### Page Five: 
+The sensor page functions
 by retrieving humidity and
 temperature values from the
 Raspberry Pi and sending them to the
@@ -268,28 +270,17 @@ placed. The general algorithm of this
 method is as follows:
 1. Resize the captured frame.
 2. Image noise removal.
-3. Convert the frame color system to
-HSV.
-4. Filtering out all colors in the frame
-except for the box color using the upper
-HSV and lower HSV.
+3. Convert the frame color system to HSV.
+4. Filtering out all colors in the frame except for the box color using the upper HSV and lower HSV.
 5. Finding image contours.
-Extracting the contour with the largest
-area among the found contours.
-6.
-Finding the smallest enclosing circle
-around the contour.
-7.
-Drawing the circle with its center on
-the frame.
-8.
+6. Extracting the contour with the largest area among the found contours.
+7. Finding the smallest enclosing circle around the contour.
+8. Draw the circle with its center on the frame.
 9. Drawing guidelines on the frame.
 10. Outputting the image.
 11. Outputting the circle center.
 12. Outputting the circle radius.
-13. Outputting information about the
-frame (frame center, frame length, 
-width, ...).
+13. Outputting information about the frame (frame center, frame length, width, ...).
 
 ## How to run:
 Make sure you have `python` installed on your system. Instal the required dependency by running `pip install -r requirements.txt` in your terminal.
