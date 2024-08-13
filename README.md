@@ -83,6 +83,40 @@ functionality and usability.
 ## project roadmap:
 ![Screenshot 2024-01-28 201845](https://github.com/user-attachments/assets/1062cdfb-724d-421b-86b1-d98eb2050760)
 
+## Designing and constructing the power management:
+![Screenshot 2024-08-13 124118](https://github.com/user-attachments/assets/0bfa93e7-e943-4364-99a0-31ccbd067d30)
+![Screenshot 2024-08-13 124149](https://github.com/user-attachments/assets/a0bce3a5-2ace-40d4-aa1e-6a2f1099725c)
+1. First, we print the circuit diagram of the power
+management on a glass-coated paper with
+dimensions of 10*10
+2. Then, we scratch the fiberglass with a wire and
+print the circuit diagram onto the fiberglass using
+an iron. To ensure better adhesion of the paper
+onto the fiberglass, it's better to first heat the
+surface with the iron. The more pressure applied
+by the iron onto the fiberglass, the better the ink
+will adhere to it.
+3. Afterward, to separate the paper, we
+immerse the fiberglass in water and peel off
+the paper. Following the separation of the
+papers, we soak the fiberglass in tea acid to
+ensure that only the circuit design remains
+on it.
+4. After separating the papers, we immerse the
+fiberglass in tea acid so that only the circuit
+design remains on it.
+5. After that, we place the components on the board
+using a regular drill with a 1mm drill bit and solder
+the components onto the board. Soldering starts
+with low-profile components like resistors or diodes
+and ends with components like Tip2259. If your
+board is bone-shaped, use a 40w soldering iron. For
+components requiring heat sinking like Tip2259, first
+connect the heat sink to the component and then
+solder.
+![photo1706289670](https://github.com/user-attachments/assets/e830e852-190e-4d38-9ba2-9d5d8fa03d9a)
+
+
 
 ## How to run:
 Make sure you have `python` installed on your system. Instal the required dependency by running `pip install -r requirements.txt` in your terminal.
