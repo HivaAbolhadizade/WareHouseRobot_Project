@@ -2,6 +2,7 @@
 # Warehouse Robot
 ![Screenshot 2024-08-13 120944](https://github.com/user-attachments/assets/dcd70d99-d0f7-4ab6-9b08-57bd2034f979)
 ![Screenshot 2024-08-13 121015](https://github.com/user-attachments/assets/988e52fd-9066-4501-87d0-776e88a2e824)
+![Untitledvideo-MadewithClipchamp1-ezgif com-optimize](https://github.com/user-attachments/assets/5ad2d584-fbfd-4366-b079-c4a24f78387b)
 
 ## Achievement
 This project was the top-performing project of the term, earning the highest score in the Computer Artichucture course. The implementation quality and innovative solutions contributed to its recognition as the best project.
@@ -20,7 +21,7 @@ of technological advancement in this field. These intelligent devices, utilizing
 
 ## Advantages of a Warehouse Robot:
 1. Increased Productivity:
-Warehouse robots, with their intelligent capabilities have enhanced the productivity of various warehouse processes. This increase in productivity not only reduces the time and costs associated with warehouse operations but also increases the ability to perform tasks simultaneously and more quickly.
+Warehouse robots, with their intelligent capabilities, have enhanced the productivity of various warehouse processes. This increase in productivity not only reduces the time and costs associated with warehouse operations but also increases the ability to perform tasks simultaneously and more quickly.
 2. High Precision:
 Warehouse robots, utilizing barcode scanning technology and sensors, exhibit high precision in identifying and recording products. This precision reduces human errors in inventory management and order fulfillment.
 3. Cost Reduction:
@@ -116,6 +117,16 @@ connect the heat sink to the component and then
 the solder.
 <img src="https://github.com/user-attachments/assets/e830e852-190e-4d38-9ba2-9d5d8fa03d9a" alt="description" width="400"/>
 
+## Sensors:
+In building this robot, we have used
+three sensors: DHT11, MQ2, and ultrasonic. You can see how we program sensors and the codes on this repository.
+We used DC gearbox motors. Initially, we measured the
+current by applying pressure to the pulling motor using a
+power source. Then, after connecting the wheels to the
+motor, we supplied input to the L298 and noted the
+wheel rotation direction by giving manual flags.
+
+# Body construction and component placement
 
 
 ## How to run:
