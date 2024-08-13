@@ -184,6 +184,7 @@ boxes is transferred to the entity page.
 Pressing the reset button sets the number
 of boxes to zero, and the user must enter
 the box count again.
+
 <img src="https://github.com/user-attachments/assets/fe9fbf54-a6a1-4553-8765-855c62ad8e77" alt="description" width="200"/>
 
 
@@ -194,6 +195,7 @@ picks them up or drops them using
 buttons. The blue box in the image
 also displays the view from the
 robot's perspective.
+
 <img src="https://github.com/user-attachments/assets/d4447d51-c2af-4472-b27b-17ed92333bce" alt="description" width="200"/>
 
 
@@ -204,6 +206,7 @@ and moves them to the desired
 destination. The blue box in the
 image indicates the view from the
 robot's perspective.
+
 <img src="https://github.com/user-attachments/assets/c47f6859-a5cb-4300-80d4-6ce744072f82" alt="description" width="200"/>
 
 
@@ -212,6 +215,7 @@ entities, and for each box placed by
 the robot, a numerical value is
 incremented by the number
 assigned to the box.
+
 <img src="https://github.com/user-attachments/assets/6483f703-a072-44aa-914e-b9f936c1c2be" alt="description" width="200"/>
 
 
@@ -225,6 +229,7 @@ pertains to a smoke detection sensor.
 In the event of smoke detection, an
 alert symbol appears next to the
 sensor as a warning.
+
 <img src="https://github.com/user-attachments/assets/d138121c-348b-433a-9ea1-b41c424866d5" alt="description" width="200"/>
 
 ## Image processing:
