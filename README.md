@@ -126,31 +126,156 @@ power source. Then, after connecting the wheels to the
 motor, we supplied input to the L298 and noted the
 wheel rotation direction by giving manual flags.
 
-# Body construction and component placement
-In the design and development of a warehouse robot, careful consideration of body construction and component placement is crucial for ensuring optimal performance, reliability, and safety. Below is a detailed overview of best practices in these areas, particularly relevant for a first-time robot project.
+## Body construction and component placement
+Body Construction:
 
-Body Construction
-1. Durability and Robustness:
+Materials: Choose strong, lightweight materials such as aluminum or high-strength plastics.
+Design: Ensure the robot is compact for navigation while being sturdy enough for warehouse use.
+Component Placement:
 
-Materials: Select high-strength, lightweight materials such as aluminum alloys or reinforced plastics for the robot's body. These materials balance durability with weight considerations, enabling the robot to withstand impacts and operate reliably in a demanding warehouse environment.
-Design Reinforcements: Identify and reinforce areas of the robot that are most susceptible to wear and tear, such as corners and edges. This helps minimize damage from accidental collisions and prolongs the robot’s lifespan.
-2. Size and Shape:
+Sensors: Place sensors and cameras for 360-degree visibility and obstacle detection.
+Manipulators: Position manipulators to maximize reach and efficiency.
+Power Supply: Locate the battery to maintain balance and allow easy access for maintenance.
+As this was our first robot project, we aimed to adhere closely to these guidelines to achieve optimal performance and reliability.
+![image](https://github.com/user-attachments/assets/2d87c840-5ed5-41c1-b69e-8d2a1393f114)
 
-Dimensions: Design the robot with dimensions that allow it to navigate standard warehouse aisles and spaces. Ensure the robot is compact enough to maneuver through narrow passages but large enough to handle typical cargo sizes.
-Shape: Opt for a low center of gravity to enhance stability and prevent tipping. A streamlined shape reduces the risk of getting stuck or caught on obstacles.
-3. Mobility:
+## mobile app:
+Flutter UI design
+Stage One: Designing the
+App Sketch in Figma
+The app was designed in five
+pages, where all elements
+are placed together for ease
+of use. Efforts were made to
+employ pastel colors and
+gentle shades of green, red,
+and blue, which are the
+colors of the robot, to make
+working with the robot easy
+.and enjoyable for the user.
+UI Programming:
+Stage Two - Programming
+In the first stage, you need to
+install the Dart and Flutter
+packages along with the Android
+SDK. Then, using the IDE and the
+VS code, you can start coding the
+UI part.
+Widgets in the app are arranged in
+a row-column layout, where each
+page should have a single column,
+and the desired widgets should be
+placed in each row.
+For the navigation bar section, all
+definitions should be made in the
+common class on the main page
+so that the navigation between
+pages can be facilitated.
+Page One: For the IP change conditions, we
+have included an input box so that the user
+is prompted to enter the desired server IP
+as soon as they enter. After specifying the
+number of boxes that need to be detected
+and moved, the user must enter them in the
+designated input. By pressing the save
+button, the entered information about the
+boxes is transferred to the entity page.
+Pressing the reset button sets the number
+of boxes to zero, and the user must enter
+the box count again.
+<img src="https://github.com/user-attachments/assets/fe9fbf54-a6a1-4553-8765-855c62ad8e77" alt="description" width="400"/>
+Page Two: This page is designed for
+manual control of the robot, where
+the robot moves boxes around and
+picks them up or drops them using
+buttons. The blue box in the image
+also displays the view from the
+robot's perspective.
+<img src="https://github.com/user-attachments/assets/d4447d51-c2af-4472-b27b-17ed92333bce" alt="description" width="400"/>
+Page Three: This page represents
+automatic movement, where the
+the robot automatically detects boxes
+and moves them to the desired
+destination. The blue box in the
+image indicates the view from the
+robot's perspective.
+<img src="https://github.com/user-attachments/assets/c47f6859-a5cb-4300-80d4-6ce744072f82" alt="description" width="400"/>
+Page Four: This page displays
+entities, and for each box placed by
+the robot, a numerical value is
+incremented by the number
+assigned to the box.
+<img src="https://github.com/user-attachments/assets/6483f703-a072-44aa-914e-b9f936c1c2be" alt="description" width="400"/>
+Page Five: The sensor page functions
+by retrieving humidity and
+temperature values from the
+Raspberry Pi and sending them to the
+application, displaying them in
+designated sections. The last sensor
+pertains to a smoke detection sensor.
+In the event of smoke detection, an
+alert symbol appears next to the
+sensor as a warning.
+<img src="https://github.com/user-attachments/assets/d138121c-348b-433a-9ea1-b41c424866d5" alt="description" width="400"/>
 
-Wheels vs. Tracks: Choose between wheels or tracks based on the warehouse floor conditions. Wheels are suitable for smooth surfaces, while tracks are better for uneven or rough terrain. Consider advanced options like omni-wheels or mecanum wheels for enhanced maneuverability.
-Suspension System: Incorporate a suspension system if the robot needs to navigate uneven floors. This feature helps maintain stability and ensures smoother operation across different surface types.
-Component Placement
-1. Sensors and Cameras:
+## Image processing:
+![image](https://github.com/user-attachments/assets/28e6c7ce-06e5-4dd8-9509-4dccca09e8ff)
+Method for detecting boxes (detect_box)
+In this method, a technique for finding
+boxes and outputting frames is
+implemented. The general algorithm of
+this method is as follows:
+1. Resize the captured frame.
+2. Remove image noise.
+3. Convert the frame color system to HSV.
+4. Filter out all colors in the frame except
+for the box color using upper HSV and
+lower HSV.
+5. Find image contours.
+6. Extract the contour with the largest area
+among the found contours.
+7. Find the smallest enclosing rectangle
+around the contour.
+8. Draw the rectangle with its center on the
+frame.
+9. Draw guide lines on the frame.
+10. Output the image.
+11. Output the rectangle center.
+12. Output the rectangle size.
+13. Output information about the frame
+(frame center, frame length and width, ...).
 
-Strategic Placement: Position sensors and cameras at key locations such as the front, sides, and top of the robot. This setup provides comprehensive coverage for obstacle detection, navigation, and item recognition.
-Types of Sensors: Utilize a combination of LIDAR, ultrasonic sensors, and cameras to achieve accurate environmental mapping and reliable object detection.
-2. Manipulators:
 
-Location and Reach: Place manipulators (arms, grippers) to maximize their range and flexibility. Ensure that they can effectively handle items from various positions and heights within the robot’s operational area.
-Design and Tools: Equip manipulators with suitable tools or grippers designed for specific tasks, such as lifting boxes or handling pallets.
+Method for finding the placement location
+of the box (detect_sign)
+In this method, we identify the sign in front
+of which the ball grabbed by the robot is
+placed. The general algorithm of this
+method is as follows:
+1.Resize the captured frame.
+2.Image noise removal.
+3. Convert the frame color system to
+HSV.
+4. Filtering out all colors in the frame
+except for the box color using the upper
+HSV and lower HSV.
+5. Finding image contours.
+Extracting the contour with the largest
+area among the found contours.
+6.
+Finding the smallest enclosing circle
+around the contour.
+7.
+Drawing the circle with its center on
+the frame.
+8.
+9. Drawing guidelines on the frame.
+10. Outputting the image.
+11. Outputting the circle center.
+12. Outputting the circle radius.
+13. Outputting information about the
+frame (frame center, frame length, 
+width, ...).
 
 ## How to run:
 Make sure you have `python` installed on your system. Instal the required dependency by running `pip install -r requirements.txt` in your terminal.
