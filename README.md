@@ -77,9 +77,11 @@ processes and our team will be diligently
 working with full energy to advance the
 project and further enhance the robot's
 functionality and usability.
+![Screenshot 2024-01-28 200215](https://github.com/user-attachments/assets/cfce0ea5-90e7-4b1d-8e76-a12481947728)
 
 
 ## project roadmap:
+![Screenshot 2024-01-28 201845](https://github.com/user-attachments/assets/1062cdfb-724d-421b-86b1-d98eb2050760)
 
 
 ## How to run:
