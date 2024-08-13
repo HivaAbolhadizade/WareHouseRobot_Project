@@ -34,5 +34,49 @@ Our team has devoted considerable effort and dedication to building an advanced 
 ## Main Objective of the Project:
 The main objective of building this robot is to facilitate warehouse processes. As an intelligent collaborator, this robot is capable of performing tasks such as automatic or manual movement of boxes and loads. Additionally, this project has provided a mobile application that warehouse operators can easily use to communicate with the robot and monitor its operation status.
 
+## Primary Functions of the Warehouse Robot:
+
+1. Moving Loads: The warehouse robot is capable
+of automatically or manually moving boxes and
+loads. This feature helps warehouse operators
+quickly and efficiently transport loads to their
+intended destinations.
+
+2. Inventory Checking: Using sensors and
+advanced technologies, the robot can check the
+inventory in the warehouse and provide
+warehouse operators with accurate information
+about the status of products in stock.
+
+3. Warehouse Temperature Control: The robot has
+the ability to control the temperature in the
+warehouse and can assist in adjusting the
+ambient temperature if necessary.
+
+4. Warehouse Humidity Control: By using a
+humidity control system, the warehouse robot
+provides the capability to manage and monitor
+the humidity level in the environment.
+
+5. Smoke Detection Alert: Equipped with smoke
+sensors, the warehouse robot can send an alert
+to the mobile application or notify the warehouse
+operators in case of smoke detection.
+
+This initial version of the warehouse
+robot is designed to address the basic
+needs of a warehouse and warehouse
+manager. With the continuation of the
+project and the development of the
+robot, it is expected that by adding
+features and necessary improvements, it
+will evolve into a smarter and more
+efficient tool. This version is just the first
+step towards improving warehouse
+processes and our team will be diligently
+working with full energy to advance the
+project and further enhance the robot's
+functionality and usability.
+
 ## How to run:
-Make sure you have `python` installed on your system. Instal required dependency by running `pip install -r requirements.txt` in your terminal.
+Make sure you have `python` installed on your system. Instal the required dependency by running `pip install -r requirements.txt` in your terminal.
