@@ -5,7 +5,7 @@
 <img src="https://github.com/user-attachments/assets/5ad2d584-fbfd-4366-b079-c4a24f78387b" alt="Animated GIF" width="300"/>
 
 ## Achievement
-This project was the top-performing project of the term, earning the highest score in the Computer Artichucture course. The implementation quality and innovative solutions contributed to its recognition as the best project.
+This project was the top-performing project of the term, earning the highest score in the Computer Artichucture course at Shahid Bahonar University of Kerman. The implementation quality and innovative solutions contributed to its recognition as the best project.
 #### Supervisor:
 Dr. Jamshidi
 
